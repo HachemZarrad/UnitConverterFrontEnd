@@ -1,0 +1,188 @@
+<div>
+<mat-grid-list cols="2" rowHeight="2">
+  <mat-grid-tile>
+    <img src="/assets/images/b.jpg"  class="bg">
+ </mat-grid-tile>
+
+ 
+<div  *ngIf = "main" class="center"  [@flyInOut]>
+        
+  <mat-card class="card" style="width: 300px;">
+     <h4>WHAT DO YOU WANT TO DO ?</h4>
+     <hr><br><br>
+
+    <mat-card-content>
+     <mat-list class="marginButtons">
+      <mat-list-item><button mat-button class="background-primary" matLine style="width: 200px;" (click) = "goToUnits()">Play With Units</button></mat-list-item><br>
+      <mat-list-item><button mat-button class="background-primary" matLine style="width: 200px;" (click) = "goToSpoon()">Play With Spoons</button></mat-list-item><br>
+      <mat-list-item><button mat-button class="background-primary" matLine style="width: 200px;" (click) = "goToMaterials()">Play With Materials</button></mat-list-item><br>
+      
+    </mat-list>
+   </mat-card-content>
+</mat-card>
+</div> 
+
+<div *ngIf = "units" class="center"
+    class="container"
+    fxLayout="row wrap"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center"
+    fxLayoutGap="10px" 
+    fxLayoutGap.xs="0"
+     [@expand]>
+
+  <mat-card  class="card" style="width: 600px;">
+      
+    <h3>Play With Units<button (click) = "goToSpoon()" style="margin-left: 414px;"><span class="fa fa-chevron-right fa-lg"></span></button></h3>
+    <hr><br><br>
+
+
+    <form novalidate  #conversionForm="ngForm">
+   <mat-card-content class="marginMat">
+         <div>
+         
+         <select class="unitSelector" [(ngModel)]="request.requestUnit" name="requestUnit"  #name="ngModel" >
+             <option value="Litre">Litre</option>
+             <option value="dl">dl</option>
+             <option value="cl">cl</option>
+             <option value="ml">ml</option>
+         </select>
+
+         <select class="unitSelector" style="margin-left: 24px;" [(ngModel)]="request.responseUnit" name="responseUnit"  #name="ngModel">
+           <option value="Litre">Litre</option>
+           <option value="dl">dl</option>
+           <option value="cl">cl</option>
+           <option value="ml">ml</option>
+       </select>
+       
+       </div>
+         
+       <div >
+         <input type="number" class="inputUnit align" [(ngModel)]="request.value" name="value"  #name="ngModel" required>  &nbsp;=
+         <input type="text" class="inputUnit align disabledBackground marginDisabeld" [value] = "result" disabled style="color:black;">
+         
+       </div><br><br>
+
+       <button mat-button class="button-background text-floral-black marginButtons"  style="width: 250px;" (click) = "play(request)" [disabled]="conversionForm.form.invalid">Convert</button>
+     
+  </mat-card-content>
+ </form>
+ <button class="homeButton" (click) = "backToMain()">Home</button>
+</mat-card>
+
+</div>
+
+<div *ngIf = "spoon" class="center"
+    class="container"
+     [@expand]
+    fxLayout="row wrap"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center"
+    fxLayoutGap="10px" 
+    fxLayoutGap.xs="0">
+
+  <mat-card class="card"  style="width: 600px;">
+      
+    <h3>Play With Spoon<button (click) = "goToMaterials()" style="margin-left: 403px;"><span class="fa fa-chevron-right fa-lg"></span></button></h3>
+    <hr><br><br>
+   
+    <form novalidate  #conversionForm="ngForm">
+   <mat-card-content class="marginSpoon">
+     <div>
+         <label class="labelFont">Scale:  </label><br><br>
+         <select class="selector" [(ngModel)]="spoonRequest.scale" name="scale"  #name="ngModel" >
+             <option value="pincee">PINCEE</option>
+             <option value="demiCuilCafe">Demi Cuillère à Café</option>
+             <option value="cuilCafe">Cuillère à Café</option>
+             <option value="cuilDessert">Cuillère à Dessert</option>
+             <option value="cuilSoupe">Cuillère à Soupe</option>
+         </select>
+       </div>
+    <br><br><br>
+     
+         <div>
+         <label class="labelFont">Quantity in ml:</label> <label class="labelFont" style="margin-left: 43px;">Spoon's Number:</label><br><br>
+         <input type="number" class="input align" [(ngModel)]="spoonRequest.value" name="value" #name="ngModel" required> =
+
+         <input type="text" class="input align disabledBackground" [value]="spoonResult" disabled style="color: black;"><br><br>
+       </div>
+
+         <button mat-button class="button-background text-floral-black marginSpoonButton" matLine style="width: 200px;" (click) = "playWithSpoons(spoonRequest)" [disabled]="conversionForm.form.invalid">Convert</button>
+      
+  </mat-card-content>
+ </form>
+ <button class="homeButton" (click) = "backToMain()">Home</button>
+</mat-card>
+</div>
+
+<div *ngIf = "materials" class="center"
+    class="container"
+     [@expand]
+    fxLayout="row wrap"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center"
+    fxLayoutGap="10px" 
+    fxLayoutGap.xs="0">
+
+  <mat-card class="card" style="width: 600px;">
+      
+    <h3>Play With Materials<button (click) = "goToUnits()" style="margin-left: 380px;"><span class="fa fa-chevron-right fa-lg"></span></button></h3>
+    
+    <hr><br><br>
+   
+ <form novalidate  #conversionForm="ngForm">
+   <mat-card-content class="marginMat">
+         
+         <label class="labelFont">Material:  </label><br><br>
+         <select class="selector" [(ngModel)]="materialRequest.material" name="material"  #name="ngModel">
+             <option value="sucre">Sucre</option>
+             <option value="farineOrdinaire">Farine Ordinaire</option>
+             <option value="riz">Riz</option>
+             <option value="maizena">Maizena</option>
+             <option value="couscous">Couscous</option>
+             <option value="cacao">Cacao</option>
+             <option value="amandePoudre">Amande Poudre</option>
+             <option value="noixDeCocoRapee">Noix De Coco Rapee</option>
+         </select>
+    <br><br><br>
+         
+        
+         <label class="labelFont">Quantity in ml:  </label> <label class="labelFont" style="margin-left: 43px;">Quantity in g:  </label> <br><br>
+         <input type="number" class="input" [(ngModel)]="materialRequest.value" name="value" #name="ngModel" required> =
+         <input type="text" class="input align disabledBackground" [value]="materialResult" disabled style="color: black;"><br><br>
+         <button mat-button class="button-background text-floral-black marginSpoonButton" matLine style="width: 200px;" (click) = "playWithMaterial(materialRequest)" [disabled]="conversionForm.form.invalid">Convert</button>
+      
+  </mat-card-content>
+ </form>
+ <button class="homeButton" (click) = "backToMain()">Home</button>
+</mat-card>
+</div>
+
+<div class="bottomleft">
+  <mat-list >
+  <a mat-icon-button class="btn-google-plus" href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a><br>
+  <a mat-icon-button class="btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-lg"></i></a><br>
+  <a mat-icon-button class="btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin fa-lg"></i></a><br>
+  <a mat-icon-button class="btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-lg"></i></a><br>
+  <a mat-icon-button class="btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a><br>
+  <a mat-icon-button class="btn-mail" href="mailto:"><i class="fa fa-envelope-o fa-lg"></i></a>
+</mat-list>
+</div>
+
+<div class="topCenter">
+  <h1 >Welcome To Our Website</h1>
+  <p style="margin-left: 70px;">© Copyright 2020 Nidhal Nasri</p>
+ </div>
+ 
+
+</mat-grid-list>
+</div> 
+ 
+
+
+
+
+

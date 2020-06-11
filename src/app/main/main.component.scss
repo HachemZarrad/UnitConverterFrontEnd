@@ -1,0 +1,137 @@
+$lt-gray: #ddd;
+$background-dark: #512DA8;
+$background-blue: #0274f0;
+$background-light: #9575CD;
+$background-pale: #D1C4E9;
+$button-color: #B7E1FF;
+$card-color: #ede077;
+$secondCard: #92b1dd;
+$secondButton: #c2a7d4;
+$green: #7edab3;
+$kk: #ff8100;
+$card-color: #6666ff;
+
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+}
+
+.labelFont{
+  font-size: large;
+}
+
+.card{
+ background-color: $card-color;
+}
+
+.button-background{
+    background-color: $kk;
+    font-size: large;
+    font-style: oblique;
+}
+
+.textButtonColor{
+    color: black;
+
+}
+
+.footer{
+    background-color: $background-pale;
+    @include zero-margin(20px, 0px);
+}
+
+.background-primary {
+    background-color: white;
+    color: black;
+    font-style: italic;
+  }
+
+.marginButtons{
+    margin-left: 25px;
+  }
+
+  .selector{
+    width: 300px;
+    height: 40px;
+}
+
+.input{
+    width: 138px;
+    height: 40px;
+}
+
+.container {
+    padding: 160px;
+    display:flex;
+  }
+
+  .marginMat{
+    margin-left: 140px;
+  }
+
+  .marginSpoon{
+    margin-left: 140px;
+  }
+
+  .disabledBackground{
+    background-color: white;
+  }
+
+
+.cardFrame{
+  width: 300px;
+  height: 400px;
+}
+
+
+.footer{
+  background-color: $background-pale;
+  @include zero-margin(20px, 0px);
+}
+
+
+.unitSelector{
+  width: 144px;
+  height: 30px;
+}
+
+.button-backgroundUnit{
+  background-color: $kk;
+  margin-left: 28px;
+}
+
+.inputUnit{
+  width: 140px;
+  height: 40px;
+}
+
+.align {
+    display:inline-block
+  }
+
+  .marginDisabeld{
+    margin-left: 3px;
+  }
+
+  .homeButton{
+    width: 70px;
+    height: 30px;
+    font-size: large;
+    font-style: oblique;
+    list-style: circle;
+    background-color: yellow;
+  }
+
+  .marginSpoonButton{
+    margin-left: 50px;
+  }
+
+
+.btn-facebook {color:#fff!important; background-color:#3b5998!important;}
+.btn-google-plus{color:#fff!important;background-color:#dd4b39!important;}
+.btn-youtube{color:#fff!important;background-color:#ff4b39!important;}
+.btn-linkedin{color:#fff!important;background-color:#007bb6!important;}
+.btn-twitter{color:#fff!important;background-color:#55acee!important;}
+.btn-mail{color:#fff!important;background-color:#512DA8!important;}
+
